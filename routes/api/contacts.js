@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const validate = require('./validation')
+const validation = require('./validation')
 const contactsControllers = require('../../controllers/contacts')
 
 router
   .get('/', contactsControllers.listContacts)
-  .post('/', validate.addContact, contactsControllers.addContact)
+  .post('/', validation.addContact, contactsControllers.addContact)
 
 router
   .get('/:contactId', contactsControllers.getContactById)
   .patch(
     '/:contactId',
-    validate.updateContact,
+    validation.updateContact,
     contactsControllers.updateContact,
   )
   .delete('/:contactId', contactsControllers.removeContact)

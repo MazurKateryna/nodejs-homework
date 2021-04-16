@@ -1,6 +1,6 @@
 const Contacts = require('../model/index')
 
-const listContacts = async (_req, res, next) => {
+const listContacts = async (req, res, next) => {
   try {
     const contacts = await Contacts.listContacts()
     return res.json({
@@ -23,7 +23,7 @@ const getContactById = async (req, res, next) => {
         data: contact,
       })
     } else {
-      return res.status(404).json({
+      return res.json({
         status: 'error',
         code: 404,
         message: 'Not Found',
@@ -37,7 +37,7 @@ const getContactById = async (req, res, next) => {
 const addContact = async (req, res, next) => {
   try {
     const contact = await Contacts.addContact(req.body)
-    return res.status(201).json({
+    return res.json({
       status: 'success',
       code: 201,
       data: contact,
@@ -55,7 +55,7 @@ const updateContact = async (req, res, next) => {
     )
 
     if (!req.body) {
-      return res.status(400).json({
+      return res.json({
         status: 'error',
         code: 400,
         message: 'missing fields',
@@ -69,7 +69,7 @@ const updateContact = async (req, res, next) => {
         data: contact,
       })
     } else {
-      return res.status(404).json({
+      return res.json({
         status: 'error',
         code: 404,
         message: 'Not Found',
@@ -91,7 +91,7 @@ const removeContact = async (req, res, next) => {
         message: 'contact deleted',
       })
     } else {
-      return res.status(404).json({
+      return res.json({
         status: 'error',
         code: 404,
         message: 'Not Found',
