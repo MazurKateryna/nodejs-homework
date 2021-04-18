@@ -1,41 +1,34 @@
-const fs = require('fs/promises')
-const path = require('path')
-const { v4: uuid } = require('uuid')
-
-const contacts = path.join(__dirname, './contacts.json')
+const Contact = require('./schemas/contact')
 
 const listContacts = async () => {
-  const allContacts = await fs.readFile(contacts, 'utf-8')
-  return JSON.parse(allContacts)
+  const results = await Contact.find({})
+  return results
 }
 
-const getContactById = async (contactId) => {
-  const allContacts = await listContacts()
-  const getContact = allContacts.find(({ id }) => id.toString() === contactId)
-  return getContact
+const getContactById = async contactId => {
+  const result = await Contact.findOne({ _id: contactId })
+  return result
 }
 
-const removeContact = async (contactId) => {
-  const allContacts = await listContacts()
-  const contactsUpdate = allContacts.filter(({ id }) => id.toString() !== contactId)
-  await fs.writeFile(contacts, JSON.stringify(contactsUpdate), 'utf-8')
-  return contactsUpdate
-}
-
-const addContact = async (body) => {
-  const allContacts = await listContacts()
-  const newContact = { _id: uuid(), ...body }
-  const newContacts = [...allContacts, newContact]
-  await fs.writeFile(contacts, JSON.stringify(newContacts), 'utf-8')
-  return newContact
+const addContact = async body => {
+  const result = await Contact.create(body)
+  return result
 }
 
 const updateContact = async (contactId, body) => {
-  const allContacts = await listContacts()
-  const contact = allContacts.find(item => toString(item.id) === contactId)
-  const changeContact = { ...contact, ...body }
-  const changeContacts = allContacts.map(item => toString(item.id) === contactId ? changeContact : item)
-  await fs.writeFile(contacts, JSON.stringify(changeContacts), 'utf-8')
+  const result = await Contact.findByIdAndUpdate(
+    { _id: contactId },
+    { ...body },
+    { new: true },
+  )
+  return result
+}
+
+const removeContact = async contactId => {
+  const result = await Contact.findByIdAndRemove({
+    _id: contactId,
+  })
+  return result
 }
 
 module.exports = {
