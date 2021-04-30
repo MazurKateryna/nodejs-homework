@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
+<<<<<<< HEAD
 
+=======
+>>>>>>> hw04-auth
 const uriDb = process.env.URI_DB
 
 const db = mongoose.connect(uriDb, {
