@@ -14,15 +14,6 @@
     "cross-env": "7.0.3",
     "dotenv": "8.2.0",
     "express": "4.17.1",
-<<<<<<< HEAD
-    "joi": "17.4.0",
-    "mongoose": "5.11.18",
-    "morgan": "1.10.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.19.0",
-    "eslint-config-prettier": "8.0.0",
-=======
     "express-rate-limit": "5.2.6",
     "helmet": "4.4.1",
     "joi": "17.4.0",
@@ -35,8 +26,7 @@
   },
   "devDependencies": {
     "eslint": "^7.19.0",
-    "eslint-config-prettier": "^8.2.0",
->>>>>>> hw04-auth
+    "eslint-config-prettier": "8.0.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-json": "2.1.2",

@@ -5,7 +5,7 @@ require('dotenv').config()
 const ACCESS_KEY = process.env.JWT_SECRET
 
 const params = {
-  secretKey: ACCESS_KEY,
+  secretOrKey: ACCESS_KEY,
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 }
 
